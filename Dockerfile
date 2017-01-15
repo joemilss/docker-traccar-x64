@@ -10,7 +10,7 @@ RUN wget https://github.com/tananaev/traccar/releases/download/v3.9/traccar-linu
 
 RUN unzip traccar-linux-3.9.zip
 
-#RUN ./traccar.run
+RUN ./traccar.run
 
 VOLUME /opt/traccar/conf
 
@@ -18,4 +18,4 @@ RUN touch /opt/traccar/logs/tracker-server.log
 
 EXPOSE 8082
 
-ENTRYPOINT /opt/traccar/bin/traccar start && tail -f /opt/traccar/logs/tracker-server.log
+ENTRYPOINT /opt/traccar/bin/startDaemon.sh && tail -f /opt/traccar/logs/tracker-server.log
