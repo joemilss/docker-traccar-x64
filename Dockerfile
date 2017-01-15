@@ -10,7 +10,7 @@ RUN wget https://github.com/tananaev/traccar/releases/download/v3.9/traccar-linu
 
 RUN unzip traccar-linux-3.9.zip
 
-RUN ./traccar.run
+#RUN ./traccar.run
 
 VOLUME /opt/traccar/conf
 
