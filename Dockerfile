@@ -1,5 +1,4 @@
-FROM java:alpine
-
+FROM java:8-jre
 RUN apt-get update && apt-get install -y wget git curl zip && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir /usr/share/traccar/
