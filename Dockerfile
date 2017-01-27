@@ -1,20 +1,13 @@
-FROM java:8-jre
-RUN apt-get update && apt-get install -y wget git curl zip && rm -rf /var/lib/apt/lists/*
+FROM java:8-alpine 
 
-RUN mkdir /usr/share/traccar/
+MAINTAINER Svdeweb <svdeweb@gmail.com> 
 
-WORKDIR /usr/share/traccar/
+ADD https://github.com/tananaev/traccar/releases/download/v3.9/traccar-linux-3.9.zip /tmp/
 
-RUN wget https://github.com/tananaev/traccar/releases/download/v3.9/traccar-linux-3.9.zip
+RUN mkdir -p /opt/traccar && unzip -o /tmp/traccar-linux-3.9.zip -d /opt/traccar && rm /tmp/traccar-linux-3.9.zip
 
-RUN unzip traccar-linux-3.9.zip
+EXPOSE 8082 5000-5150 5000-5150/udp 
 
-RUN ./traccar.run
+WORKDIR /opt/traccar
 
-VOLUME /opt/traccar/conf
-
-RUN touch /opt/traccar/logs/tracker-server.log
-
-EXPOSE 8082
-
-ENTRYPOINT /opt/traccar/bin/startDaemon.sh && tail -f /opt/traccar/logs/tracker-server.log
+ENTRYPOINT ["java", "-Djava.net.preferIPv4Stack=true", "-Xms512m", "-jar", "tracker-server.jar", "conf/traccar.xml"]
