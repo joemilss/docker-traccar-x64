@@ -1,4 +1,4 @@
-FROM openjdk:8-jre
+FROM java:alpine
 
 RUN apt-get update && apt-get install -y wget git curl zip && rm -rf /var/lib/apt/lists/*
 
@@ -6,9 +6,9 @@ RUN mkdir /usr/share/traccar/
 
 WORKDIR /usr/share/traccar/
 
-RUN wget https://github.com/tananaev/traccar/releases/download/v3.8/traccar-linux-3.8.zip
+RUN wget https://github.com/tananaev/traccar/releases/download/v3.9/traccar-linux-3.9.zip
 
-RUN unzip traccar-linux-3.8.zip
+RUN unzip traccar-linux-3.9.zip
 
 RUN ./traccar.run
 
