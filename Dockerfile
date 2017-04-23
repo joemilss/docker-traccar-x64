@@ -2,7 +2,7 @@ FROM java:8-jre-alpine
 
 MAINTAINER Svdeweb <svdeweb@gmail.com> 
 
-ENV TRACCAR_VERSION 3.10 
+ENV TRACCAR_VERSION 3.11 
 
 WORKDIR /opt/traccar
 
