@@ -15,6 +15,8 @@ RUN set -ex && \
     \
     apk del install-dependencies
 
-EXPOSE 8082 ENTRYPOINT ["java"]
+EXPOSE 8082 
+
+ENTRYPOINT ["java"]
 
 CMD ["-Djava.net.preferIPv4Stack=true", "-Xms512m", "-jar", "tracker-server.jar", "conf/traccar.xml"]
